@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Создание и настройка проекта микро-сервиса \"Блюда и заказ еды\"",
   "main": "index.js",
+  "type" : "module",  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod:start": "npm run build && node build/app.js",
+    "dev:server": "npx nodemon",
+    "build": "npm run test && rimraf ./build && npx tsc",
+    "test": "jest --passWithNoTests"
   },
   "repository": {
     "type": "git",
@@ -20,5 +24,19 @@
   "bugs": {
     "url": "https://github.com/Czernee/com.pass-ordering-food/issues"
   },
-  "homepage": "https://github.com/Czernee/com.pass-ordering-food#readme"
+  "homepage": "https://github.com/Czernee/com.pass-ordering-food#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "typeorm": "^0.3.17"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.5.1",
+    "dotenv": "^16.3.1",
+    "prettier": "^3.0.2",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
 }
