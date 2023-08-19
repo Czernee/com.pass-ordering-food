@@ -1,0 +1,24 @@
+{
+  "name": "com.pass-food",
+  "version": "1.0.0",
+  "description": "Создание и настройка проекта микро-сервиса \"Блюда и заказ еды\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Czernee/com.pass-ordering-food.git"
+  },
+  "keywords": [
+    "Node.js",
+    "express",
+    "postgresql"
+  ],
+  "author": "Daniil Chernousov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Czernee/com.pass-ordering-food/issues"
+  },
+  "homepage": "https://github.com/Czernee/com.pass-ordering-food#readme"
+}
