@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Создание и настройка проекта микро-сервиса \"Блюда и заказ еды\"",
   "main": "index.js",
-  "type" : "module",  
+  "type": "module",
   "scripts": {
     "prod:start": "npm run build && node build/app.js",
     "dev:server": "npx nodemon",
@@ -28,6 +28,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
+    "pg": "^8.11.3",
     "typeorm": "^0.3.17"
   },
   "devDependencies": {
