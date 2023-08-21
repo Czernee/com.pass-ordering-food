@@ -16,7 +16,7 @@ const AppDataSource = new DataSource({
     database: process.env.POSTGRES_DB
 })
 
-AppDataSource.initialize()
+await AppDataSource.initialize()
     .then(() => {
         console.log("Data Source has been initialized!")
     })
