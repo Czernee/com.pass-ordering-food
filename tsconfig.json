@@ -9,6 +9,8 @@
     "lib": [
     "ES6"
     ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "removeComments": true,
     "outDir": "./build",
     "sourceMap": true,
