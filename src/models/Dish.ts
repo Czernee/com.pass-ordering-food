@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { Order } from "./Order.js"
+import { Cart } from "./Cart.js"
 
 @Entity()
 export class Dish {
@@ -6,7 +8,7 @@ export class Dish {
     id: number
 
     @Column()
-    dishname: string
+    dish_name: string
 
     @Column()
     composition: string
@@ -14,6 +16,9 @@ export class Dish {
     @Column()
     price: number
 
-    @Column()
-    photos: number[]
+    @ManyToOne(() => Order, order => order.dishes)
+    order: Order
+
+    @ManyToOne(() => Cart, cart => cart.dishes)
+    cart: Cart
 }
