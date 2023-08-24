@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column,  OneToMany} from "typeorm"
 import { Dish } from './Dish.js'
 
 @Entity() 
@@ -7,9 +7,8 @@ export class Cart {
     id: number
 
     @Column() 
-    clientid: number
+    client_id: number
 
-    @ManyToMany(type => Dish)
-    @JoinTable()
+    @OneToMany(() => Dish, dish => dish.cart)
     dishes: Dish[]
 }

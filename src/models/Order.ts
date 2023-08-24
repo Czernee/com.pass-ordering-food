@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm"
-import { Cart } from './Cart.js'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
 import { Dish } from './Dish.js'
 
 @Entity() 
@@ -8,21 +7,20 @@ export class Order {
     id: number
 
     @Column()
-    clientid: number
-
-    @ManyToMany(type => Dish)
-    @JoinTable()
-    dishes: Dish[]
-
+    client_id: number
+      
     @Column()
-    totalprice: number
-
+    total_price: number
+    
     @Column()
-    dateorder: Date
-
+    date_order: Date
+    
     @Column()
-    datedeliver: Date
-
+    date_deliver: Date
+    
     @Column()
     completed: boolean
+
+    @OneToMany(() => Dish, dish => dish.order)
+    dishes: Dish[]
 }
