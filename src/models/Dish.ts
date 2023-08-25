@@ -1,6 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
-import { Order } from "./Order.js"
-import { Cart } from "./Cart.js"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
 
 @Entity()
 export class Dish {
@@ -15,10 +13,4 @@ export class Dish {
 
     @Column()
     price: number
-
-    @ManyToOne(() => Order, order => order.dishes)
-    order: Order
-
-    @ManyToOne(() => Cart, cart => cart.dishes)
-    cart: Cart
 }

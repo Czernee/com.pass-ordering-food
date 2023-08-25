@@ -12,19 +12,10 @@ class cartController {
         }
     }
 
-    async createCart(req, res) {
-        try {
-            const newCart = await cartService.createCart(req.body)
-            res.json(newCart)
-        } catch (e) {
-            res.status(500).json({message: e.message})
-        }
-    }
-
     async addItem(req, res) {
         try {
-            const updatedCart = await cartService.addItem(req.params.id, req.body)
-            res.json(updatedCart)
+            const newItem = await cartService.addItem(req.params.id, req.body)
+            res.json(newItem)
         } catch (e) {
             res.status(500).json({message: e.message})
         }
@@ -32,8 +23,8 @@ class cartController {
 
     async deleteItem(req, res) {
         try {
-            const updatedCart = await cartService.addItem(req.params.id, req.body)
-            res.json(updatedCart)
+            const deletedItem = await cartService.deleteItem(req.params.id, req.body)
+            res.json({message: "Успешно удалено"})
         } catch (e) {
             res.status(500).json({message: e.message})
         }

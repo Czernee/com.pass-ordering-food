@@ -18,7 +18,7 @@ class dishService {
         .where("dish.id = :id", { id })
         .getOne()
     }
-
+ 
     async createDish(dishData) {
         const dishRepository = AppDataSource.getRepository(Dish)
         const newDish = dishRepository.create(dishData)

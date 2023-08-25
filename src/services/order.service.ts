@@ -35,7 +35,6 @@ class orderService {
         }
 
         order.client_id = orderData.client_id
-        //order.dishes = orderData.dishes
         order.total_price = orderData.total_price
         order.date_order = orderData.date_order
         order.date_deliver = orderData.date_deliver

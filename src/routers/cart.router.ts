@@ -2,9 +2,8 @@ import Router from 'express'
 const cartRouter = Router()
 import cartController from '../controllers/cart.controller.js'
 
-cartRouter.get('/', cartController.getCart)
-cartRouter.post('/', cartController.createCart)
-cartRouter.patch('/', cartController.addItem)
-cartRouter.patch('/', cartController.deleteItem)
+cartRouter.get('/:id', cartController.getCart)
+cartRouter.patch('/add/:id', cartController.addItem)
+cartRouter.patch('/delete/:id', cartController.deleteItem)
 
 export default cartRouter

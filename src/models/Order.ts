@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
-import { Dish } from './Dish.js'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm"
 
 @Entity() 
 export class Order {
@@ -8,7 +7,10 @@ export class Order {
 
     @Column()
     client_id: number
-      
+
+    @Column("int", { array: true })
+    dishes: number[]
+
     @Column()
     total_price: number
     
@@ -21,6 +23,4 @@ export class Order {
     @Column()
     completed: boolean
 
-    @OneToMany(() => Dish, dish => dish.order)
-    dishes: Dish[]
 }

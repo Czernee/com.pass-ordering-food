@@ -1,5 +1,6 @@
-import { Cart } from "../models/Cart.js";
-import AppDataSource from "../app.js";
+import { Cart } from "../models/Cart.js"
+import { Dish } from "../models/Dish.js"
+import AppDataSource from "../app.js"
 
 class cartService {
     async getCart(client_id) {
@@ -10,36 +11,36 @@ class cartService {
         const cartRepository = AppDataSource.getRepository(Cart)
         return await cartRepository
         .createQueryBuilder("cart")
-        .where("cart.client_id = :client_id", { client_id })
+        .where("client_id = :client_id", { client_id })
         .getOne()
     }
 
-    async createCart(cartData) {
+    async addItem(client_id, dish_id) {
         const cartRepository = AppDataSource.getRepository(Cart)
-        const newCart = cartRepository.create(cartData)
-        await cartRepository.save(newCart)
-        return newCart
+        let cart = await cartRepository.createQueryBuilder().where('client_id = :client_id', { client_id }).getOne()
+
+        if (!cart) {
+            cart = cartRepository.create({ client_id })
+            cart.dishes = [dish_id]
+            await cartRepository.save(cart)
+        } else {
+           cart.dishes.push(dish_id)
+           await cartRepository.save(cart)
+        }
+
+        return cart
     }
 
-    async addItem(client_id, cartData) {
+    async deleteItem(client_id, dish_id) {
         const cartRepository = AppDataSource.getRepository(Cart)
-        const cart = await cartRepository.createQueryBuilder().where('client_id = :client_id', { client_id }).getOne()
+        const cart = await this.getCart(client_id)
 
-        cart.dishes = cartData.dishes
+        if (cart && cart.dishes.includes(dish_id)) {
+            cart.dishes = cart.dishes.filter(id => id !== dish_id)
+            await cartRepository.save(cart)
+        }
 
-        await cartRepository.save(cart)
-        return Cart        
-    }
-
-    async deleteItem(client_id, cartData) {
-        const cartRepository = AppDataSource.getRepository(Cart)
-        const cart = await cartRepository.createQueryBuilder().where('client_id = :client_id', { client_id }).getOne()
-
-        cart.dishes = cartData.dishes
-
-        await cartRepository.save(cart)
-        return Cart  
+        return cart
     }
 }
-
 export default new cartService()
