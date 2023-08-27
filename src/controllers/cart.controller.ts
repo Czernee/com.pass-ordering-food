@@ -14,7 +14,7 @@ class cartController {
 
     async addItem(req, res) {
         try {
-            const newItem = await cartService.addItem(req.params.id, req.body)
+            const newItem = await cartService.addItem(req.params.id, req.body.dishes)
             res.json(newItem)
         } catch (e) {
             res.status(500).json({message: e.message})
@@ -23,7 +23,7 @@ class cartController {
 
     async deleteItem(req, res) {
         try {
-            const deletedItem = await cartService.deleteItem(req.params.id, req.body)
+            const deletedItem = await cartService.deleteItem(req.params.id, req.body.dishes)
             res.json({message: "Успешно удалено"})
         } catch (e) {
             res.status(500).json({message: e.message})
