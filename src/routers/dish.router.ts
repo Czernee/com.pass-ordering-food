@@ -1,6 +1,6 @@
 import Router from 'express'
-const dishRouter = Router()
 import dishController from '../controllers/dish.controller.js'
+const dishRouter = Router()
 
 dishRouter.get('/', dishController.getDishes)
 dishRouter.get('/:id', dishController.getOneDish)

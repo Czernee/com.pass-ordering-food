@@ -8,10 +8,6 @@ class dishService {
     }
 
     async getOneDish(id) {
-        if (!id) {
-            throw new Error("Не указан ID");
-        }
-
         const dishRepository = AppDataSource.getRepository(Dish)
         return await dishRepository
         .createQueryBuilder("dish")
@@ -43,10 +39,6 @@ class dishService {
     }
 
     async deleteDish(id) {
-        if (!id) {
-            throw new Error("Не указан ID")
-        }
-
         const dishRepository = AppDataSource.getRepository(Dish)
 
         return await dishRepository

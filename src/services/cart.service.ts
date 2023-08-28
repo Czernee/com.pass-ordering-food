@@ -3,10 +3,6 @@ import AppDataSource from "../app.js"
 
 class cartService {
     async getCart(client_id) {
-        if (!client_id) {
-            throw new Error("Не указан ID");
-        }
-
         const cartRepository = AppDataSource.getRepository(Cart)
         return await cartRepository
         .createQueryBuilder("cart")

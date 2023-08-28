@@ -1,9 +1,8 @@
-import { Dish } from '../models/Dish.js'
-import AppDataSource from "../app.js"
+import { Request, Response } from 'express'
 import dishService from '../services/dish.service.js'
 
 class dishController {
-    async getDishes(req, res) {
+    async getDishes(req: Request, res: Response) {
         try {
             const dishes = await dishService.getDishes()
             res.json(dishes)
@@ -12,36 +11,41 @@ class dishController {
         }
     }
 
-    async getOneDish(req, res) {
+    async getOneDish(req: Request, res: Response) {
         try {
-            const dish = await dishService.getOneDish(req.params.id)
+            const { id } = req.params
+            const dish = await dishService.getOneDish(id)
             res.json(dish)
         } catch (e) {
             res.status(500).json({message: e.message})
         }
     }
 
-    async createDish(req, res) {
+    async createDish(req: Request, res: Response) {
         try {
-            const newDish = await dishService.createDish(req.body)
+            const dishData = req.body
+            const newDish = await dishService.createDish(dishData)
             res.json(newDish)
         } catch (e) {
             res.status(500).json({message: e.message})
         }
     }
 
-    async updateDish(req, res) {
+    async updateDish(req: Request, res: Response) {
         try {
-            const updatedDish = await dishService.updateDish(req.params.id, req.body)
+            const { id } = req.params
+            const dishData = req.body
+            const updatedDish = await dishService.updateDish(id, dishData)
             res.json(updatedDish)
         } catch (e) {
             res.status(500).json({message: e.message})
         }
     }
 
-    async deleteDish(req, res) {
+    async deleteDish(req: Request, res: Response) {
         try {
-            const deletedDish = await dishService.deleteDish(req.params.id)
+            const { id } = req.params
+            const deletedDish = await dishService.deleteDish(id)
             res.json({ message: "Блюдо успешно удалено"})
         } catch (e) {
             res.status(500).json({message: e.message})

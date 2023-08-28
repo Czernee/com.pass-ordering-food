@@ -1,29 +1,33 @@
-import { Cart } from '../models/Cart.js'
-import AppDataSource from "../app.js"
 import cartService from '../services/cart.service.js'
+import { Request, Response } from 'express'
 
 class cartController {
-    async getCart(req, res) {
+    async getCart(req: Request, res: Response) {
         try {
-            const cart = await cartService.getCart(req.params.id)
+            const { id }: any = req.params
+            const cart = await cartService.getCart(id)
             res.json(cart)
         } catch (e) {
             res.status(500).json({message: e.message})
         }
     }
 
-    async addItem(req, res) {
+    async addItem(req: Request, res: Response) {
         try {
-            const newItem = await cartService.addItem(req.params.id, req.body.dishes)
+            const { clientId }: any = req.params
+            const { dishes }: any = req.body
+            const newItem = await cartService.addItem(clientId, dishes)
             res.json(newItem)
         } catch (e) {
             res.status(500).json({message: e.message})
         }
     }
 
-    async deleteItem(req, res) {
+    async deleteItem(req: Request, res: Response) {
         try {
-            const deletedItem = await cartService.deleteItem(req.params.id, req.body.dishes)
+            const { clientId }: any = req.params
+            const { dishes }: any = req.body
+            const deletedItem = await cartService.deleteItem(clientId, dishes)
             res.json({message: "Успешно удалено"})
         } catch (e) {
             res.status(500).json({message: e.message})

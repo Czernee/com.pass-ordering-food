@@ -1,9 +1,8 @@
-import { Order } from '../models/Order.js'
-import AppDataSource from "../app.js"
+import { Request, Response } from 'express'
 import orderService from '../services/order.service.js'
 
 class orderController {
-    async getOrders(req, res) {
+    async getOrders(req: Request, res: Response) {
         try {
             const orders = await orderService.getOrders()
             res.json(orders)
@@ -12,27 +11,31 @@ class orderController {
         }
     }
 
-    async getOneOrder(req, res) {
+    async getOneOrder(req: Request, res: Response) {
         try {
-            const order = await orderService.getOneOrder(req.params.id)
+            const { id } = req.params
+            const order = await orderService.getOneOrder(id)
             res.json(order)
         } catch (e) {
             res.status(500).json({message: e.message})
         }
     }
 
-    async createOrder(req, res) {
+    async createOrder(req: Request, res: Response) {
         try {
-            const newOrder = await orderService.createOrder(req.body)
+            const orderData = req.body
+            const newOrder = await orderService.createOrder(orderData)
             res.json(newOrder)
         } catch (e){ 
             res.status(500).json({message: e.message})
         }
     }
 
-    async updateOrder(req, res) {
+    async updateOrder(req: Request, res: Response) {
         try {
-            const updatedOrder = await orderService.updateOrder(req.params.id, req.body)
+            const { id } = req.params
+            const orderData = req.body
+            const updatedOrder = await orderService.updateOrder(id, orderData)
             res.json(updatedOrder)
         } catch (e) {
             res.status(500).json({message: e.message})

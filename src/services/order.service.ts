@@ -8,10 +8,6 @@ class orderService {
     }
 
     async getOneOrder(id) {
-        if (!id) {
-            throw new Error("Не указан ID");
-        }
-
         const orderRepository = AppDataSource.getRepository(Order)
         return await orderRepository
         .createQueryBuilder("order")
