@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column} from "typeorm"
+import { Dish } from './Dish.js'
 
 @Entity() 
 export class Cart {

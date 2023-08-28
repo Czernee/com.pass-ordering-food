@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Dish } from './Dish.js'
 
 @Entity() 
 export class Order {
@@ -22,5 +23,4 @@ export class Order {
     
     @Column()
     completed: boolean
-
 }

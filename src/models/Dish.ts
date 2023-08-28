@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { Order } from "./Order.js"
+import { Cart } from "./Cart.js"
 
 @Entity()
 export class Dish {
