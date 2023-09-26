@@ -14,7 +14,7 @@ app.use('/api/dish', dishRouter)
 app.use('/api/order', orderRouter)
 app.use('/api/cart', cartRouter)
 
-const PORT = 3000
+const PORT = 80
 
 const AppDataSource = new DataSource({
     type: "postgres",
