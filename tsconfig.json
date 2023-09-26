@@ -5,7 +5,7 @@
       "forceConsistentCasingInFileNames": true,
       "rootDir": "./src",
       "target": "ES2018",
-      "module": "ESNext",
+      "module": "NodeNext",
       "lib": [
       "ES6"
       ],
